@@ -154,12 +154,10 @@ class PetShopView {
           		  return template;
             }
 
-            if (object.isFluffy) {
                 template.innerHTML = `<span class='id'>ID: ${object.id}</span>
                                   <span class="fluffy">Is Fluffy: ${object.isFluffy}</span>`;
             
           			return template;
-        		}
         }
     }
 
@@ -192,18 +190,21 @@ let array = [
 ];
 
 let ps = new PetShop(array);
+window.oninit = addHeadings();
 
-let cats = document.querySelector('.allCatsList');
-let h2 = document.createElement('h2');
-h2.innerText = 'Cats';
-cats.prepend(h2);
+function addHeadings(){
+	let cats = document.querySelector('.allCatsList');
+	let h2 = document.createElement('h2');
+	h2.innerText = 'Cats';
+	cats.prepend(h2);
 
-let fluffyOrWhiteList = document.querySelector('.fluffyOrWhiteList');
-let h2fluffy = document.createElement('h2');
-h2fluffy.innerText = 'Fluffy or white List';
-fluffyOrWhiteList.prepend(h2fluffy);
+	let fluffyOrWhiteList = document.querySelector('.fluffyOrWhiteList');
+	let h2fluffy = document.createElement('h2');
+	h2fluffy.innerText = 'Fluffy or white List';
+	fluffyOrWhiteList.prepend(h2fluffy);
 
-let price = document.querySelector('.priceGreaterThanAvgList');
-let h2price = document.createElement('h2');
-h2price.innerText = 'Price Greater Than Average List';
-price.prepend(h2price);
+	let price = document.querySelector('.priceGreaterThanAvgList');
+	let h2price = document.createElement('h2');
+	h2price.innerText = 'Price Greater Than Average List';
+	price.prepend(h2price);
+}
