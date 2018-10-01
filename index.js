@@ -1,9 +1,8 @@
 class Pet {
-    constructor(color, price, type, id) {
+    constructor(color, price, id) {
         this.id = id || counter();
         this.color = color;
         this.price = price;
-        this.type = type;
     }
 }
 
@@ -41,11 +40,11 @@ class PetShop {
     }
 
     handleData(collection) {
-        collection.forEach(animal => {
+        collection.forEach (animal => {
             this.makeCollection(animal);
         });
 
-        this.findGreaterThanAvg(collection);
+        this.findGreaterThanAvg(this.collection);
 
         this.render.AllCats(this.cats);
         this.render.PriceGreaterThanAvg(this.priceGreaterThanAvgList);
@@ -56,31 +55,33 @@ class PetShop {
         let animal = element;
 
         if (animal.type === 'cat') {
-            animal = new Cat(element.color, element.price, element.name, element.id, element.isFluffy);
+            animal = new Cat(animal.color, animal.price, animal.name, animal.id, animal.isFluffy);
             this.cats.push(animal);
         }
 
         if (animal.type === 'dog') {
-            animal = new Dog(animal.color, animal.price, animal.name, element.id);
+            animal = new Dog(animal.color, animal.price, animal.name, animal.id);
         }
 
         if (animal.type === 'hamster') {
-            animal = new Hamster(animal.id, animal.isFluffy);
+            animal = new Hamster(animal.isFluffy, animal.id);
         }
 
         if (animal.isFluffy || animal.color === 'white') {
             this.fluffyOrWhite.push(animal);
         }
-
+        
         this.collection.push(animal);
     }
 
     findGreaterThanAvg(collection) {
-        let average = 0;
+        let average = 0,
+        	count = 0;
 
         collection.forEach(element => {
             if(element.price){
                 average += +element.price;
+                count++;
             }
         });
 
@@ -123,7 +124,7 @@ class PetShopView {
     }
 
     FluffyOrWhite(list) {
-        this.buildList(list, 'cat', 'fluffy');
+        this.buildList(list, 'fluffy', 'fluffy');
     }
 
     createList() {
@@ -131,7 +132,9 @@ class PetShopView {
     }
 
     getTemplate(object, type) {
+    	debugger;
         let template = document.createElement('p');
+
         if (type === 'cat') {
             template.innerHTML = `<span class='id'>ID: ${object.id}</span>
             Name: ${object.name}`;
@@ -145,28 +148,31 @@ class PetShopView {
             return template;
         }
 
-        if (type === 'fluffyOrWhite') {
-            if (object.isFluffy && object.color) {
-                template.innerHTML = `<span class='id'>ID: ${object.id}</span>
-                                  <span class="fluffy">Is Fluffy ${object.isFluffy}</span>
-                                  <span class="color"Color: ${object.color}</span>
-                                  Name: ${object.name}`;
-          		  return template;
+        if (object.color === 'white') {
+            template.innerHTML = `<span class='id'>ID: ${object.id}</span>
+                                  <span class="color">Color: ${object.color}</span>
+                                  Name: ${(object.name) ? object.name : ""}`;
+          	return template;
+        }
+
+        if (object.isFluffy) {
+            	template.innerHTML = `<span class='id'>ID: ${object.id}</span>
+            						  <span class='hamster'>Hamster</span>
+                                      <span class="fluffy">Is fluffy: ${object.isFluffy}</span>`;
             }
 
-                template.innerHTML = `<span class='id'>ID: ${object.id}</span>
-                                  <span class="fluffy">Is Fluffy: ${object.isFluffy}</span>`;
-            
-          			return template;
-        }
+        return template;
     }
 
     buildList(collection, type, list) {
         collection.forEach(element => {
             let p = this.getTemplate(element, type);
-            if(list === 'cat'){this.allCatsList.appendChild(p);}
-            if(list === 'price'){this.priceGreaterThanAvgList.appendChild(p);}
-            if(list === 'fluffy'){this.fluffyOrWhiteList.appendChild(p);}
+            if (list === 'cat') {
+            	this.allCatsList.appendChild(p);}
+            if (list === 'price') {
+            	this.priceGreaterThanAvgList.appendChild(p);}
+            if (list === 'fluffy') {
+            	this.fluffyOrWhiteList.appendChild(p);}
         });
     }
 }
@@ -178,19 +184,14 @@ var counter = (function() {
     };
 }());
 
-let array = [
-    { type: 'cat', color: 'black', name: 'Pufik', price: '100', isFluffy: false },
-    { type: 'cat', color: 'red', name: 'Rizhik', price: '250', isFluffy: false },
-    { type: 'cat', color: 'white', name: 'Filya', price: '999', isFluffy: false },
-    { type: 'dog', color: 'yellow', name: 'Rex', price: '500' },
-    { type: 'dog', color: 'white', name: 'Husky', price: '500' },
-    { type: 'hamster', isFluffy: true },
-    { type: 'hamster', isFluffy: true },
-    { type: 'cat', color: 'gray', name: 'Shadow', price: '499', isFluffy: true }
-];
 
-let ps = new PetShop(array);
-window.oninit = addHeadings();
+let array = fetch('./data.json')
+  .then((response) => {
+    	console.log(response.json());
+   });
+
+//let ps = new PetShop();
+//window.oninit = addHeadings();
 
 function addHeadings(){
 	let cats = document.querySelector('.allCatsList');
@@ -208,3 +209,14 @@ function addHeadings(){
 	h2price.innerText = 'Price Greater Than Average List';
 	price.prepend(h2price);
 }
+
+/*let array = [
+    { type: 'cat', color: 'black', name: 'Pufik', price: '100', isFluffy: false },
+    { type: 'cat', color: 'red', name: 'Rizhik', price: '250', isFluffy: false },
+    { type: 'cat', color: 'white', name: 'Filya', price: '999', isFluffy: false },
+    { type: 'dog', color: 'yellow', name: 'Rex', price: '500' },
+    { type: 'dog', color: 'white', name: 'Husky', price: '500' },
+    { type: 'hamster', isFluffy: true },
+    { type: 'hamster', isFluffy: true },
+    { type: 'cat', color: 'gray', name: 'Shadow', price: '499', isFluffy: true }
+];*/
