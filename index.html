@@ -5,8 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WP Hello world</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="./node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-    <script src="./index.js"></script>
+    <div class="container">
+    
+        <div class="row">
+            <h1>PetShop</h1>
+
+            <h3>add pet:</h3>
+        </div>
+
+        <div class="pets">
+            <div class="row petForm">
+            <div class="col s12 input valign-wrapper">   
+                <label class="input-field col s2">
+                    Select class
+                        <select class="classSelector">
+                            <option value="" disabled selected></option>
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="hamster">Hamster</option>
+                        </select>
+                </label>
+                <label class="hidden petName col s3">
+                    Enter name
+                    <input type="text">
+                </label>
+                <label class="petColor col s2">
+                    Enter color
+                        <input type="text">
+                </label>
+                <label class="petPrice col s2">
+                    Enter price
+                        <input type="text">
+                </label>
+                <label class="hidden petFluffy col s2">
+                    Is Fluffy?
+                    <div class="switch">
+                            <label class ="switcher">
+                              Yeap
+                              <input type="checkbox" value="" class="inputIsFluffy">
+                              <span class="lever"></span>
+                              Noah
+                            </label>
+                    </div>
+                </label>
+
+                <button class="col s1 waves-effect waves-light btn deep-purple addPet">+</button>
+            </div>
+            </div>
+        </div>
+
+            <div class="row buttons">
+                <button class="addNewPets waves-effect waves-light btn deep-purple">Add</button>
+                <button class="clear waves-effect waves-light btn red lighten-1">Clear</button>
+                <p class="hidden message">Please, fill all fields.</p>
+            </div>
+        
+
+
+        <div class="row ps">
+
+        </div>
+
+
+    </div>
+
+    <script src="./src/index.js"></script>
 </body>
 </html>

@@ -1,8 +1,41 @@
-    { "type": "cat", "color": "black", "name": "Pufik", "price": "100", "isFluffy": false },
-    { "type": "cat", "color": "red", "name": "Rizhik", "price": "250", "isFluffy": false },
-    { "type": "cat", "color": "white", "name": "Filya", "price": "999", "isFluffy": false },
-    { "type": "dog", "color": "yellow", "name": "Rex", "price": "500" },
-    { "type": "dog", "color": "white", "name": "Husky", "price": "500" },
-    { "type": "hamster", "isFluffy": true },
-    { "type": "hamster", "isFluffy": true },
-    { "type": "cat", "color": "gray", "name": "Shadow", "price": "499", "isFluffy": true }
+[{
+	"type": "cat",
+	"color": "black",
+	"name": "Pufik",
+	"price": "100",
+	"isFluffy": "false"
+}, {
+	"type": "cat",
+	"color": "red",
+	"name": "Rizhik",
+	"price": "250",
+	"isFluffy": "false"
+}, {
+	"type": "cat",
+	"color": "white",
+	"name": "Filya",
+	"price": "999",
+	"isFluffy": "false"
+}, {
+	"type": "dog",
+	"color": "yellow",
+	"name": "Rex",
+	"price": "500"
+}, {
+	"type": "dog",
+	"color": "white",
+	"name": "Husky",
+	"price": "500"
+}, {
+	"type": "hamster",
+	"isFluffy": "true"
+}, {
+	"type": "hamster",
+	"isFluffy": "true"
+}, {
+	"type": "cat",
+	"color": "gray",
+	"name": "Shadow",
+	"price": "499",
+	"isFluffy": "true"
+}]
