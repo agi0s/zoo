@@ -202,7 +202,7 @@ class PetShop {
     makeCollection(element) {
         let animal = element;
 
-        if (animal.type === 'cat') {
+        if (animal.type === 'cat' && animal.color && animal.price && animal.name) {
             animal = new Cat(animal.color, animal.price, animal.name, animal.id, animal.isFluffy);
             this.cats.push(animal);
         }
@@ -299,7 +299,7 @@ class PetShopView {
         }
 
         if (object.isFluffy === "true") {
-            template.innerHTML = `<span class='id'>ID: ${object.id}</span>
+            template.innerHTML = `<span class='id'>ID: ${(object.id) ? object.id : ''}</span>
             						  <span>${object.name}</span>
                                       <span class="fluffy">is fluffy.</span>`;
         }
